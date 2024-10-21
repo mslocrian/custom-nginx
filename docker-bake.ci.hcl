@@ -1,9 +1,9 @@
-variable SHA {
-    default = "ci"
+variable GITHUB_SHA {
+    default = "none"
 }
 
 target default {
     tags = [
-        "registry.owns.com/owns-nginx:${ubstr(SHA,0,7)}"
+        "registry.owns.com/owns-nginx:ci-${substr(GITHUB_SHA,0,7)}"
     ]
 }

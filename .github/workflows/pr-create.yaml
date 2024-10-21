@@ -17,5 +17,6 @@ jobs:
       - uses: actions/checkout@v4
       - name: Build ci image
         run: |
-          env
-          echo Running CI job
+          #env
+          docker login -u ${REGISTRY_USERNAME} -p ${REGISTRY_PASSWORD}
+          docker buildx bake --push --file docker-bake.hcl --file docker-bake.ci.hcl default
