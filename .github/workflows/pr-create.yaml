@@ -1,8 +1,12 @@
-name: Run Tests
+name: Pull Request Create Runner
 
 on:
-  push:
+  #push:
   pull_request:
+    types:
+      - opened
+      - synchronize
+      - reopened
     branches:
       - main
 
@@ -14,3 +18,4 @@ jobs:
       - name: Build ci image
         run: |
           env
+          echo Running CI job

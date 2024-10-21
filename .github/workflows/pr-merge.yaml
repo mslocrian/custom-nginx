@@ -1,3 +1,4 @@
+Name: PR Merge Runner
 on:
   pull_request:
     types:
