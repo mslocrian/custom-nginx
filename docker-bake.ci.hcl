@@ -9,6 +9,6 @@ variable GITHUB_REF_NAME {
 target default {
     tags = [
         "registry.owns.com/owns-nginx/nginx:pr-${split("/", GITHUB_REF_NAME)[0]}",
-        "registry.owns.com/owns-nginx/${split("/", GITHUB_REF_NAME)}/nginx:ci-${substr(GITHUB_SHA,0,7)}"
+        "registry.owns.com/owns-nginx/${split("/", GITHUB_REF_NAME)[0]}/nginx:ci-${substr(GITHUB_SHA,0,7)}"
     ]
 }
