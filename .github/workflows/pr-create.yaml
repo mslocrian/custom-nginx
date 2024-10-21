@@ -18,6 +18,6 @@ jobs:
       - uses: docker/setup-buildx-action@v3
       - name: Build ci image
         run: |
-          #env
-          docker login -u ${REGISTRY_USERNAME} -p ${REGISTRY_PASSWORD}
+          mkdir -p ${HOME}/.docker
+          echo ${DOCKER_CONFIG_JSON} | base64 -d > ${HOME}/.docker
           docker buildx bake --push --file docker-bake.hcl --file docker-bake.ci.hcl default
