@@ -1,8 +1,12 @@
-name: Run Tests
+name: Pull Request Create Runner
 
 on:
-  push:
+  #push:
   pull_request:
+    types:
+      - opened
+      - synchronize
+      - reopened
     branches:
       - main
 
@@ -11,6 +15,19 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - uses: docker/setup-buildx-action@v3
+      - name: Login to registry.owns.com
+        uses: docker/login-action@v3
+        with:
+          registry: registry.owns.com
+          username: ${{ secrets.REGISTRY_USERNAME }}
+          password: ${{ secrets.REGISTRY_PASSWORD }}
+      #- name: Create docker creds
+      #  run: |
+      #    echo ${DOCKER_CONFIG_JSON} | base64 -d > ${HOME}/.docker/config.json
+      #- name: View docker creds
+      #  run: |
+      #    cat ${HOME}/.docker/config.json
       - name: Build ci image
         run: |
-          env
+          docker buildx bake --push --file docker-bake.hcl --file docker-bake.ci.hcl default
