@@ -27,13 +27,6 @@ jobs:
           username: ${{ secrets.REGISTRY_USERNAME }}
           password: ${{ secrets.REGISTRY_PASSWORD }}
 
-      #- name: Create docker creds
-      #  run: |
-      #    echo ${DOCKER_CONFIG_JSON} | base64 -d > ${HOME}/.docker/config.json
-      #- name: View docker creds
-      #  run: |
-      #    cat ${HOME}/.docker/config.json
-
       - name: Build ci image
         run: |
           export GITHUB_PR=${{ github.event.pull_request.number }}
