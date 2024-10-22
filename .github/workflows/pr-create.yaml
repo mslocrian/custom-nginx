@@ -1,7 +1,6 @@
 name: Pull Request Create Runner
 
 on:
-  #push:
   pull_request:
     types:
       - opened
