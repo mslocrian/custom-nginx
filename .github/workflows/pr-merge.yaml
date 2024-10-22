@@ -35,5 +35,5 @@ jobs:
 
       - name: Deploy image
         run: |
-          VERSION=$(jq -r '.release.version' <<< "$({ steps.semantic.outputs.release})")
+          VERSION=$(jq -r '.release.version' <<< "${{ steps.semantic.outputs.release }}")
           docker buildx bake --push --file docker-bake.hcl --file docker-bake.build.hcl default

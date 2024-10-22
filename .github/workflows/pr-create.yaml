@@ -36,5 +36,5 @@ jobs:
 
       - name: Build ci image
         run: |
-          GITHUB_PR=$({ github.event.pull_request.number })
+          GITHUB_PR=${{ github.event.pull_request.number }}
           docker buildx bake --push --file docker-bake.hcl --file docker-bake.ci.hcl default
